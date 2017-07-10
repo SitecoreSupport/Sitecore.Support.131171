@@ -30,13 +30,18 @@
         visit.ReferringSite = string.Empty;
         visit.Referrer = string.Empty;
       }
-      // Fix for the bug#131171. Checking if a request comes from the site itself. If yes, do not track it as a referrer site.
+
+      #region Modified code
+
       else if (urlReferrer.Host == HttpContext.Current.Request.Url.Host.ToString())
       {
         visit.Keywords = string.Empty;
         visit.ReferringSite = string.Empty;
         visit.Referrer = string.Empty;
       }
+
+      #endregion
+
       else
       {
         visit.ReferringSite = urlReferrer.Host;
